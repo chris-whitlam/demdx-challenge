@@ -28,12 +28,9 @@ const View: FC<ViewProps> = ({ symptoms }) => {
             items: [option],
           },
           onError: () => deSelectItem(option)
-        }).then(() => {
-          setShowMutationResult(isChecked);
-        }).catch(() => {
-          deSelectItem(option)
-        });
+        }).catch(() => deSelectItem(option))
       }
+      setShowMutationResult(isChecked);
     }
   });
 
