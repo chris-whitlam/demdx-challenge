@@ -48,6 +48,7 @@ interface AutocompleteProps {
   onToggle: (option: string, isChecked: boolean) => Promise<void>;
   placeholder?: string;
   delay?: number
+  autoFocus?: boolean;
 }
 
 const Autocomplete: FC<AutocompleteProps> = ({
@@ -56,6 +57,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
   onToggle,
   placeholder = '',
   delay = DEFAULT_DELAY_MS,
+  autoFocus = false,
   ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -103,6 +105,7 @@ const Autocomplete: FC<AutocompleteProps> = ({
         placeholder={placeholder}
         onChange={handleChange}
         onBlur={handleBlur}
+        autoFocus={autoFocus}
       />
       <DropdownOptions>
         {filteredOptions.map((option) => (

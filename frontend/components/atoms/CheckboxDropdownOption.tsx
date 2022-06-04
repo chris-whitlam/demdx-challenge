@@ -2,8 +2,8 @@ import { FC } from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  min-width: 100%;
   text-align: left;
+  width: 100%;
   background: none;
   border: none;
   font-size: 1.5rem;

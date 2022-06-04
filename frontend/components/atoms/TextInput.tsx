@@ -21,6 +21,7 @@ const Input = styled.input`
 interface TextInputProps {
   value?: string;
   placeholder?: string;
+  autoFocus?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>
 }
@@ -29,6 +30,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
   {
     value = '',
     placeholder = '',
+    autoFocus = false,
     onChange,
     onBlur
   },
@@ -42,6 +44,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>((
     onBlur={onBlur}
     readOnly={Boolean(value && !onChange)}
     placeholder={placeholder}
+    autoFocus={autoFocus}
   />
 )
 
