@@ -13,6 +13,16 @@ const useAutocomplete = ({ onToggle: onCustomToggle }: AutocompleteOptions) => {
 
   const onToggle = useCallback(
     async (option: string, isChecked: boolean) => {
+      if (onCustomToggle) {
+        try {
+          await onCustomToggle(option, isChecked)
+        } catch (error) {
+          // If error with custom toggle don't update state
+          // eslint-disable-next-line no-console
+          console.error(error);
+          return;
+        }
+      }
 
       if (isChecked) {
         setSelectedOptions((storedOptions) => [...storedOptions, option]);
@@ -20,9 +30,7 @@ const useAutocomplete = ({ onToggle: onCustomToggle }: AutocompleteOptions) => {
         deSelectItem(option);
       }
 
-      if (onCustomToggle) {
-        await onCustomToggle(option, isChecked)
-      }
+
     },
     [setSelectedOptions],
   );

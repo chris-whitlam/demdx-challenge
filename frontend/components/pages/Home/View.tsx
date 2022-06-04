@@ -20,15 +20,14 @@ const View: FC<ViewProps> = ({ symptoms }) => {
   const [showMutationResult, setShowMutationResult] = useState<boolean>(false);
   const [fetchSuggestionWithDate, { data, loading, error }] = useSuggestionWithDate();
 
-  const { selectedOptions: selectedSymptoms, onToggle, deSelectItem } = useAutocomplete({
+  const { selectedOptions: selectedSymptoms, onToggle } = useAutocomplete({
     onToggle: async (option, isChecked) => {
       if (isChecked) {
         await fetchSuggestionWithDate({
           variables: {
             items: [option],
-          },
-          onError: () => deSelectItem(option)
-        }).catch(() => deSelectItem(option))
+          }
+        })
       }
       setShowMutationResult(isChecked);
     }
