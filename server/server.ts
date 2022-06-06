@@ -1,23 +1,10 @@
-import { ApolloServer, gql } from 'apollo-server';
+import { ApolloServer } from 'apollo-server';
+import rootResolver from './resolvers/rootResolver';
+import schema from './graphql/schema';
 
 const server = new ApolloServer({
-  typeDefs: gql`
-    type Query {
-      listOfSuggestions: [String]
-    }
-    type Mutation {
-      getSuggestionWithDate(items: [String]): [String]
-    }
-  `,
-  resolvers: {
-    Query: {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      listOfSuggestions: () => require('./list_suggestions-v7.0.0.json').data,
-    },
-    Mutation: {
-      getSuggestionWithDate: (parent, args) => args.items.map((x: string) => `${x} - ${new Date().toISOString()}`),
-    },
-  },
+  typeDefs: schema,
+  resolvers: rootResolver,
 });
 
 // eslint-disable-next-line no-console

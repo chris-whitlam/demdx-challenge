@@ -12,7 +12,7 @@ const DataProvider: FC = () => {
     return <Spinner />;
   }
 
-  if (error || !suggestions.listOfSuggestions.length) {
+  if (error || !suggestions?.listOfSuggestions || !suggestions?.listOfSuggestions?.length) {
     return <Error />
   }
 
