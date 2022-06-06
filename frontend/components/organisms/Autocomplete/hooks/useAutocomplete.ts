@@ -19,7 +19,6 @@ const useAutocomplete = ({ onToggle: onCustomToggle }: AutocompleteOptions) => {
         } catch (error) {
           // If error with custom toggle don't update state
           // eslint-disable-next-line no-console
-          console.error(error);
           return;
         }
       }
